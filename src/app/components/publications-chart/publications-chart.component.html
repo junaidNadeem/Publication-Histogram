@@ -1,0 +1,63 @@
+<body class="container-fluid" [@flyInOut]="'in'">
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <section class="card">
+      <div class="card-block">
+        <form #f="ngForm" novalidate>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr class="row ">
+              <td class="col-md-12">
+                <h4>Search worldwide, life-sciences literature</h4>
+              </td>
+            </tr>
+            <tr class="row">
+              <td class="col-md-6">
+                <input type="text" class="form-control serach-input" placeholder="Add search query here" id="attr_label"
+                       name="attr_label" #attr_label="ngModel" [(ngModel)]="model.input" pattern="^.{1,}$"
+                       (keyup.enter)="f.form.valid && onSubmitSearch(model.input,model.date)"
+                       placeholder="Add search query here" required>
+              </td>
+              <td class="col-md-3">
+                <my-date-range-picker name="mydaterange" [options]="myDateRangePickerOptions" [(ngModel)]="model.date"
+                                      placeholder="Select publication year range"></my-date-range-picker>
+              </td>
+              <td class="col-md-3 ">
+                <button #btnSearch type="button" [disabled]="!f.form.valid" class="btn btn-primary"
+                        (click)="onSubmitSearch(model.input,model.date); btnSearch.blur();">
+                  <i class="fa fa-search ">&nbsp;Search</i>
+                </button>
+              </td>
+            </tr>
+            <tr class="row ">
+              <td class="col-md-6">
+                <h6 class="search-caption">E.g. "breast cancer" HER2 Smith J</h6>
+              </td>
+              <td class="col-md-6">
+                <h6 class="search-caption">Default Range: Last 5 years</h6>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+<br>
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-10">
+    <section class="card" id="chartSection">
+      <div class="card-block">
+        <div *ngIf="searchClicked">
+          <h4>Results For: {{model.searchText}}</h4>
+          <hr>
+        </div>
+        <chart style="display: block;" [options]="chartOptions" (load)="saveChartInstance($event.context)"></chart>
+      </div>
+    </section>
+  </div>
+  <div class="col-sm-1"></div>
+</div>
+</body>
