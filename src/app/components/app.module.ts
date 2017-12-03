@@ -5,7 +5,8 @@ import {HttpModule}    from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MyDateRangePickerModule} from 'mydaterangepicker';
 import {ProgressbarModule} from 'ngx-bootstrap';
-import {SlimLoadingBarService, SlimLoadingBarComponent} from 'ng2-slim-loading-bar';
+import {SlimLoadingBarModule} from 'ng2-slim-loading-bar';
+
 
 import {AppComponent}   from './app.component';
 import {routing} from './app.routes';
@@ -27,6 +28,7 @@ export function highchartsFactory() {
 @NgModule({
   imports: [
     BrowserModule,
+    SlimLoadingBarModule.forRoot(),
     MyDateRangePickerModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -37,13 +39,11 @@ export function highchartsFactory() {
   ],
   declarations: [
     AppComponent,
-    SlimLoadingBarComponent,
     PublicationsChartComponent,
   ],
   providers: [
     AppConfig,
     NotificationService,
-    SlimLoadingBarService,
     PublicationsChartService, {
       provide: HighchartsStatic,
       useFactory: highchartsFactory

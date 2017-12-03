@@ -18,7 +18,7 @@ Please follow below instrcutions to setup and run this project.
   3. npm 5.0.2
   4. bower 1.8.0
 
--> Install required npm and bower packages: (if working on fresh copy)
+-> Install required npm packages: (if working on fresh copy)
   1. Open terminal and go to "publication-histogram" root folder.
   2. Run command: npm install
 
